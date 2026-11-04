@@ -32,7 +32,7 @@ export const projects: Project[] = [
     role: "Sole Developer & Project Creator — internal tool, built end-to-end",
     tags: ["Automation", "Web App", "Queues"],
     visual: {
-      src: "/images/unified-scraper.png",
+      src: "/images/unified-scraper.webp",
       alt: "Unified Scraper web application showing campaign setup, post-URL validation, run configuration, and a live activity monitor (employer branding redacted).",
       caption: "Campaign setup, URL validation, and the live process monitor. Employer branding redacted; no client data shown.",
     },
