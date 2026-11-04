@@ -18,6 +18,7 @@ export type Project = {
   capabilities: Capability[];
   impact: { text: string; caveat?: string }[]; // caveat = labelled estimate / non-benchmark note
   contribution: string;
+  authors?: string;
   tech: string[];
   link?: { label: string; href: string };
   repositoryNote?: string;
@@ -82,7 +83,7 @@ export const projects: Project[] = [
     title: "Personalized Online Course Recommender",
     summary:
       "Research on personalizing online-course recommendations with truncated SVD and clustering, published at IEEE ICITISEE 2025.",
-    role: "Co-author — research & recommendation modeling",
+    role: "First author — research & recommendation modeling",
     tags: ["Research", "Recommender Systems", "Clustering"],
     challenge:
       "Online course platforms treat every learner the same; coarse popularity-based suggestions miss individual skill needs, so capable learners plateau and material about the right topic never reaches them.",
@@ -112,7 +113,9 @@ export const projects: Project[] = [
       },
     ],
     contribution:
-      "Co-authored the research and publication; worked on the recommendation approaches and the experimental design behind the comparison of clustering-based methods.",
+      "Led the research and publication as first author: the recommendation approaches, the learner-segmentation experiments, and the evaluation design behind the clustering comparison.",
+    authors:
+      "Haydar Rizaldy P. P., Aditya Firman Ihsan, Rosa Reska Riskiana, Z. K. A. Baizal — School of Computing, Telkom University, Bandung, Indonesia",
     tech: ["Data Science", "Recommender Systems", "Clustering", "Collaborative Filtering"],
     link: {
       label: "DOI 10.1109/ICITISEE68184.2025.11355135",

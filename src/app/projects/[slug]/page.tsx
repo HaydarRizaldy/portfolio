@@ -151,6 +151,11 @@ export default async function CaseStudyPage({
               </li>
             ))}
           </ul>
+          {project.authors && (
+            <p className="mt-4 max-w-prose text-xs text-muted">
+              Authors: {project.authors}
+            </p>
+          )}
         </section>
 
         {/* 7. My contribution */}
