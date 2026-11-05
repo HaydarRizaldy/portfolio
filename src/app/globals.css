@@ -33,6 +33,7 @@
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-fira-code), ui-monospace, SFMono-Regular, monospace;
 
   --color-background: var(--background);
   --color-surface: var(--surface);
@@ -50,6 +51,17 @@
 @utility card-glow {
   background-color: var(--surface);
   background-image: radial-gradient(120% 90% at 0% 0%, var(--card-glow), transparent 60%);
+}
+
+/* Typewriter block cursor. The reduced-motion block below freezes it. */
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  animation: caret-blink 1s steps(1) infinite;
 }
 
 body {

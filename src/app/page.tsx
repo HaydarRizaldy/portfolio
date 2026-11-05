@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { Button } from "@/components/button";
 import { CopyEmail } from "@/components/copy-email";
 import { ProjectCard } from "@/components/project-card";
+import { Typewriter } from "@/components/typewriter";
 import { profile } from "@/content/profile";
 import { experience } from "@/content/experience";
 import { projects } from "@/content/projects";
@@ -62,8 +63,21 @@ export default function HomePage() {
       <Container className="pt-20 pb-20 sm:pt-28 sm:pb-24">
         <section className="grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-              {profile.positioning}
+            {/* Terminal greeting, GitHub-profile style. Line 2 cycles. */}
+            <p className="font-mono text-sm leading-relaxed sm:text-base">
+              <span className="block text-ink">
+                <span aria-hidden="true" className="text-muted">
+                  &gt;{" "}
+                </span>
+                {profile.greeting}
+              </span>
+              {/* min-h reserves two lines so wrapping on phones never shifts the H1. */}
+              <span className="block min-h-[3.25em] text-accent sm:min-h-[1.625em]">
+                <span aria-hidden="true" className="text-muted">
+                  &gt;{" "}
+                </span>
+                <Typewriter lines={profile.typewriter} />
+              </span>
             </p>
             <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               {profile.headline}

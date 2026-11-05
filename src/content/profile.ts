@@ -14,6 +14,22 @@ export const profile = {
   headline: "Turning Data Into Insight. Building Solutions That Matter.",
   intro:
     "Data engineer focused on analytics, data engineering, and applied automation — currently an intern at ALVA Digital Network. Previously supported bank-wide master data management at CIMB Niaga and shipped an interactive reporting stack on Vercel.",
+  // Hero terminal greeting. The second line cycles through `typewriter`.
+  // Mirrors the GitHub profile typing banner (README.md) — keep both in sync.
+  greeting: "Hi, I'm Haydar Rizaldy 👋",
+  typewriter: [
+    "SQL by Day, Python by Night",
+    "SELECT * FROM life WHERE bugs = 0",
+    "Automating the Boring Stuff",
+    "It Works On My Machine",
+    "Cleaning Data So You Don't Have To",
+    "Debugging: Detective and Culprit",
+    "Curious Mind, Clean Code",
+    "Professional Googler of Errors",
+    "Not a Bug, It's a Feature",
+    "Ctrl+C, Ctrl+V, Ctrl+Pray",
+    "Open to Collaborate - Let's Connect!",
+  ],
   // Hero "at a glance" panel — each item restates a fact already verified
   // elsewhere on the site (projects.ts / experience.ts). Estimates stay labelled.
   atAGlance: [
