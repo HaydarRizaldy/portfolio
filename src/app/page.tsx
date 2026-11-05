@@ -60,26 +60,30 @@ export default function HomePage() {
 
   return (
     <main id="main" className="flex-1">
-      <Container className="pt-20 pb-20 sm:pt-28 sm:pb-24">
+      {/* Terminal greeting band, GitHub-profile style: centred between the
+          header and the hero. Line 2 cycles. */}
+      <Container className="pt-14 sm:pt-20">
+        <p className="text-center font-mono text-base leading-relaxed sm:text-lg">
+          <span className="block text-ink">
+            <span aria-hidden="true" className="text-muted">
+              &gt;{" "}
+            </span>
+            {profile.greeting}
+          </span>
+          {/* min-h reserves the line(s) so typing/wrapping never shifts the hero. */}
+          <span className="block min-h-[3.25em] text-accent sm:min-h-[1.625em]">
+            <span aria-hidden="true" className="text-muted">
+              &gt;{" "}
+            </span>
+            <Typewriter lines={profile.typewriter} />
+          </span>
+        </p>
+      </Container>
+
+      <Container className="pt-12 pb-20 sm:pt-16 sm:pb-24">
         <section className="grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div>
-            {/* Terminal greeting, GitHub-profile style. Line 2 cycles. */}
-            <p className="font-mono text-sm leading-relaxed sm:text-base">
-              <span className="block text-ink">
-                <span aria-hidden="true" className="text-muted">
-                  &gt;{" "}
-                </span>
-                {profile.greeting}
-              </span>
-              {/* min-h reserves two lines so wrapping on phones never shifts the H1. */}
-              <span className="block min-h-[3.25em] text-accent sm:min-h-[1.625em]">
-                <span aria-hidden="true" className="text-muted">
-                  &gt;{" "}
-                </span>
-                <Typewriter lines={profile.typewriter} />
-              </span>
-            </p>
-            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-3xl font-display text-4xl leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               {profile.headline}
             </h1>
             <p className="mt-6 max-w-xl text-base text-muted sm:text-lg">
