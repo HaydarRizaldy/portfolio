@@ -14,6 +14,7 @@ export function Timeline({
     summary?: string;
     highlights: ReactNode[];
     tags?: string[];
+    current?: boolean; // marks the ongoing role with an accent dot
   }[];
 }) {
   return (
@@ -22,10 +23,19 @@ export function Timeline({
         <li key={index} className="relative">
           <span
             aria-hidden="true"
-            className="absolute top-2 -left-[1.65rem] h-2 w-2 rounded-full border border-line bg-surface sm:-left-[2.15rem]"
+            className={`absolute top-1.5 -left-[1.72rem] h-2.5 w-2.5 rounded-full border sm:-left-[2.22rem] ${
+              item.current
+                ? "border-accent bg-accent ring-4 ring-accent-soft"
+                : "border-muted/60 bg-background"
+            }`}
           />
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
             {item.period}
+            {item.current && (
+              <span className="ml-2 rounded-full bg-accent-soft px-2 py-0.5 text-[0.65rem] tracking-[0.12em] text-accent">
+                Current
+              </span>
+            )}
           </p>
           <div className="mt-2">
             {item.title}

@@ -1,9 +1,6 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/content/projects";
-
-// TODO(M5): replace with the final custom domain when it is chosen.
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-steel-pi.vercel.app";
+import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/about", "/projects"] as const;

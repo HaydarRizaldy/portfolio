@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { profile } from "@/content/profile";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -69,7 +70,7 @@ export function SiteHeader() {
             })}
           </nav>
 
-          <Button href="mailto:haydarrizaldyputera@gmail.com" size="sm" className="hidden sm:inline-flex">
+          <Button href={`mailto:${profile.email}`} variant="outline" size="sm" className="max-sm:hidden">
             Email me
           </Button>
 
@@ -116,7 +117,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <a
-              href="mailto:haydarrizaldyputera@gmail.com"
+              href={`mailto:${profile.email}`}
               className="py-3 text-base text-accent"
             >
               Email me

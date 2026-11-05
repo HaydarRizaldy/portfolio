@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Year } from "@/components/year";
+import { profile } from "@/content/profile";
 
 const SITE = [
   { href: "/", label: "Home" },
@@ -10,9 +11,9 @@ const SITE = [
 
 // Verified links only (LinkedIn and GitHub confirmed by the user).
 const ELSEWHERE = [
-  { href: "mailto:haydarrizaldyputera@gmail.com", label: "Email" },
-  { href: "https://www.linkedin.com/in/haydar-rizaldy/", label: "LinkedIn" },
-  { href: "https://github.com/HaydarRizaldy", label: "GitHub" },
+  { href: `mailto:${profile.email}`, label: "Email" },
+  { href: profile.linkedin, label: "LinkedIn" },
+  { href: profile.github, label: "GitHub" },
 ];
 
 export function SiteFooter() {

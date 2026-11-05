@@ -11,11 +11,15 @@ export type Project = {
   title: string;
   summary: string; // one-sentence value proposition for the listing card
   role: string;
+  cardLabel: string; // short "type · role" eyebrow for cards; full `role` shows on the case study
   tags: string[];
-  visual?: { src: string; alt: string; caption?: string };
+  // width/height = intrinsic pixel size of the image file (keeps aspect ratio correct).
+  visual?: { src: string; alt: string; width: number; height: number; caption?: string };
   challenge: string;
   solution: string;
   capabilities: Capability[];
+  // Headline figures shown large in the Impact section; each must restate an `impact` item.
+  stats?: { value: string; label: string; note?: string }[];
   impact: { text: string; caveat?: string }[]; // caveat = labelled estimate / non-benchmark note
   contribution: string;
   authors?: string;
@@ -31,10 +35,13 @@ export const projects: Project[] = [
     summary:
       "A single queue-driven app for Instagram and TikTok comment extraction and thumbnail downloads — compressing a manual campaign workflow by an estimated 83%.",
     role: "Sole Developer & Project Creator — internal tool, built end-to-end",
+    cardLabel: "Internal tool · Sole developer",
     tags: ["Automation", "Web App", "Queues"],
     visual: {
       src: "/images/unified-scraper.webp",
       alt: "Unified Scraper web application showing campaign setup, post-URL validation, run configuration, and a live activity monitor (employer branding redacted).",
+      width: 1022,
+      height: 1055,
       caption: "Campaign setup, URL validation, and the live process monitor. Employer branding redacted; no client data shown.",
     },
     challenge:
@@ -63,6 +70,10 @@ export const projects: Project[] = [
           "Authentication with server-side credential handling, and API-usage monitoring per platform.",
       },
     ],
+    stats: [
+      { value: "60 → 10 min", label: "per campaign run", note: "Estimate" },
+      { value: "3", label: "users so far", note: "Wider access intended" },
+    ],
     impact: [
       {
         text: "Estimated reduction of a campaign run from roughly 60 minutes to about 10 minutes (≈83% less elapsed time).",
@@ -84,6 +95,7 @@ export const projects: Project[] = [
     summary:
       "Research on personalizing online-course recommendations with truncated SVD and clustering, published at IEEE ICITISEE 2025.",
     role: "First author — research & recommendation modeling",
+    cardLabel: "IEEE paper · First author",
     tags: ["Research", "Recommender Systems", "Clustering"],
     challenge:
       "Online course platforms treat every learner the same; coarse popularity-based suggestions miss individual skill needs, so capable learners plateau and material about the right topic never reaches them.",
@@ -128,6 +140,7 @@ export const projects: Project[] = [
     summary:
       "End-to-end credit-risk model from preprocessing to evaluation, delivered as the final project of a data-science virtual internship at ID/X Partners.",
     role: "Data Science Virtual Intern — ID/X Partners",
+    cardLabel: "Internship project",
     tags: ["Machine Learning", "Classification"],
     challenge:
       "Lenders need to judge application risk on the full picture of behavior and capacity — income, credit history, and loan purpose — which manual screening handles slowly and inconsistently.",

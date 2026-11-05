@@ -45,6 +45,7 @@ export default function AboutPage() {
                 summary: item.summary,
                 highlights: item.highlights,
                 tags: item.tags,
+                current: item.period.endsWith("Present"),
               }))}
             />
           </div>
@@ -87,21 +88,28 @@ export default function AboutPage() {
             Skills & Certifications
           </h2>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <dl className="mt-8 divide-y divide-line rounded-2xl border border-line bg-surface">
             {skillGroups.map((group) => (
               <div
                 key={group.title}
-                className="rounded-2xl border border-line bg-surface p-6"
+                className="grid gap-3 p-5 sm:grid-cols-[14rem_minmax(0,1fr)] sm:items-center sm:p-6"
               >
-                <p className="font-display text-lg text-ink">{group.title}</p>
-                <ul className="mt-3 space-y-1.5 text-sm text-muted">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <dt className="font-display text-lg text-ink">{group.title}</dt>
+                <dd>
+                  <ul className="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-full border border-line bg-background px-3 py-1 text-xs text-ink/85"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
               </div>
             ))}
-          </div>
+          </dl>
 
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             <div>
@@ -124,17 +132,17 @@ export default function AboutPage() {
         </section>
 
         {/* PRD 4 (CV): downloadable PDF is deferred until the CV is updated
-            and approved. Requesting by mail keeps the claim accurate. */}
+            and approved — swap the email button for the download then. */}
         <section
           className="mt-20 rounded-2xl border border-line bg-surface p-8"
           aria-labelledby="cv-heading"
         >
           <h2 id="cv-heading" className="font-display text-2xl text-ink">
-            Detailed CV
+            Want the full CV?
           </h2>
           <p className="mt-2 max-w-prose text-sm text-muted">
-            A downloadable PDF with full project detail isn&apos;t published
-            here yet. The current CV is available upon request.
+            I&apos;ll send the latest version with full project detail — just
+            ask by email. LinkedIn has the complete history in the meantime.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Button href={`mailto:${profile.email}`} variant="primary" size="sm">

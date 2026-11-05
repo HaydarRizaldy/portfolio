@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { siteUrl } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,9 +23,6 @@ const spaceGrotesk = Space_Grotesk({
  * listener keeps the site in sync with OS changes when no choice is saved.
  */
 const themeScript = `(function(){try{var d=document.documentElement;var t=localStorage.getItem("theme");if(t!=="dark"&&t!=="light"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.setAttribute("data-theme",t);var m=window.matchMedia("(prefers-color-scheme: dark)");m.addEventListener("change",function(e){try{if(!localStorage.getItem("theme")){d.setAttribute("data-theme",e.matches?"dark":"light")}}catch(x){}})}catch(e){}})();`;
-
-// TODO(M5): replace with the final custom domain when it is chosen and attached.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-steel-pi.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
