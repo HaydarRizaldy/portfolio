@@ -15,6 +15,8 @@
   --line: #e2e6ea;
   --accent: #0f766e;
   --accent-soft: #e6f2ef;
+  /* Card corner glow — teal reads stronger on dark, so each theme sets its own mix. */
+  --card-glow: color-mix(in oklab, var(--accent) 16%, transparent);
 }
 
 [data-theme="dark"] {
@@ -25,6 +27,7 @@
   --line: #272d33;
   --accent: #2dd4bf;
   --accent-soft: #173a35;
+  --card-glow: color-mix(in oklab, var(--accent) 14%, transparent);
 }
 
 @theme inline {
@@ -38,6 +41,15 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+}
+
+/*
+ * Card surface: subtle teal glow in the top-left corner fading to the normal
+ * surface by ~60%, so text sits on near-flat colour. Theme-aware via tokens.
+ */
+@utility card-glow {
+  background-color: var(--surface);
+  background-image: radial-gradient(120% 90% at 0% 0%, var(--card-glow), transparent 60%);
 }
 
 body {

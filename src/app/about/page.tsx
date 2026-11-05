@@ -59,7 +59,7 @@ export default function AboutPage() {
             Education
           </h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-line bg-surface p-6">
+            <div className="rounded-2xl border border-line card-glow p-6">
               <p className="font-display text-xl text-ink">
                 {education.telkom.school}
               </p>
@@ -68,7 +68,7 @@ export default function AboutPage() {
                 {education.telkom.period}
               </p>
             </div>
-            <div className="rounded-2xl border border-line bg-surface p-6">
+            <div className="rounded-2xl border border-line card-glow p-6">
               <p className="font-display text-xl text-ink">
                 {education.mmu.school}
               </p>
@@ -88,7 +88,7 @@ export default function AboutPage() {
             Skills & Certifications
           </h2>
 
-          <dl className="mt-8 divide-y divide-line rounded-2xl border border-line bg-surface">
+          <dl className="mt-8 divide-y divide-line rounded-2xl border border-line card-glow">
             {skillGroups.map((group) => (
               <div
                 key={group.title}
@@ -134,7 +134,7 @@ export default function AboutPage() {
         {/* PRD 4 (CV): downloadable PDF is deferred until the CV is updated
             and approved — swap the email button for the download then. */}
         <section
-          className="mt-20 rounded-2xl border border-line bg-surface p-8"
+          className="mt-20 rounded-2xl border border-line card-glow p-8"
           aria-labelledby="cv-heading"
         >
           <h2 id="cv-heading" className="font-display text-2xl text-ink">

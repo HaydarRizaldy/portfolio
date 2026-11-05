@@ -156,7 +156,7 @@ export default async function CaseStudyPage({
                 {project.capabilities.map((capability) => (
                   <li
                     key={capability.title}
-                    className="rounded-2xl border border-line bg-surface p-5"
+                    className="rounded-2xl border border-line card-glow p-5"
                   >
                     <h3 className="font-display text-lg text-ink">
                       {capability.title}
@@ -174,7 +174,7 @@ export default async function CaseStudyPage({
                   {project.stats.map((stat) => (
                     <li
                       key={stat.label}
-                      className="rounded-2xl border border-line bg-surface p-5"
+                      className="rounded-2xl border border-line card-glow p-5"
                     >
                       <span className="block font-display text-3xl tracking-tight text-accent sm:text-4xl">
                         {stat.value}
@@ -236,7 +236,7 @@ export default async function CaseStudyPage({
           </div>
 
           <aside aria-label="Project at a glance">
-            <div className="rounded-2xl border border-line bg-surface p-6 lg:sticky lg:top-24">
+            <div className="rounded-2xl border border-line card-glow p-6 lg:sticky lg:top-24">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
                 At a glance
               </p>
@@ -277,7 +277,7 @@ export default async function CaseStudyPage({
           {previous ? (
             <Link
               href={`/projects/${previous.slug}`}
-              className="group rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-ink/30"
+              className="group rounded-2xl border border-line card-glow p-5 transition-colors hover:border-ink/30"
             >
               <span className="text-xs text-muted">← Previous project</span>
               <span className="mt-1 block font-display text-lg text-ink group-hover:text-accent">
@@ -287,7 +287,7 @@ export default async function CaseStudyPage({
           ) : (
             <Link
               href="/projects"
-              className="group rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-ink/30"
+              className="group rounded-2xl border border-line card-glow p-5 transition-colors hover:border-ink/30"
             >
               <span className="text-xs text-muted">← Back to</span>
               <span className="mt-1 block font-display text-lg text-ink group-hover:text-accent">
@@ -298,7 +298,7 @@ export default async function CaseStudyPage({
           {next ? (
             <Link
               href={`/projects/${next.slug}`}
-              className="group rounded-2xl border border-line bg-surface p-5 text-right transition-colors hover:border-ink/30"
+              className="group rounded-2xl border border-line card-glow p-5 text-right transition-colors hover:border-ink/30"
             >
               <span className="text-xs text-muted">Next project →</span>
               <span className="mt-1 block font-display text-lg text-ink group-hover:text-accent">
@@ -308,7 +308,7 @@ export default async function CaseStudyPage({
           ) : (
             <Link
               href="/projects"
-              className="group rounded-2xl border border-line bg-surface p-5 text-right transition-colors hover:border-ink/30"
+              className="group rounded-2xl border border-line card-glow p-5 text-right transition-colors hover:border-ink/30"
             >
               <span className="text-xs text-muted">Back to →</span>
               <span className="mt-1 block font-display text-lg text-ink group-hover:text-accent">

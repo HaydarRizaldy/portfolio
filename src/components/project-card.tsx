@@ -26,7 +26,7 @@ export function ProjectCard({
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`group flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-ink/30 ${className}`}
+      className={`group flex h-full flex-col rounded-2xl border border-line card-glow p-6 transition-colors hover:border-ink/30 ${className}`}
     >
       {showVisual && project.visual && (
         <span className="mb-6 block aspect-video overflow-hidden rounded-xl border border-line">

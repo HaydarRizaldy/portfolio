@@ -83,7 +83,7 @@ export default function HomePage() {
 
           <aside
             aria-label="At a glance"
-            className="rounded-2xl border border-line bg-surface p-6"
+            className="rounded-2xl border border-line card-glow p-6"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
               At a glance
@@ -143,7 +143,7 @@ export default function HomePage() {
             {highlights.map((item) => (
               <div
                 key={`${item.org}-${item.period}`}
-                className="rounded-2xl border border-line bg-surface p-6"
+                className="rounded-2xl border border-line card-glow p-6"
               >
                 <p className="text-xs uppercase tracking-[0.18em] text-muted">
                   {item.period}
@@ -162,7 +162,7 @@ export default function HomePage() {
       <Container className="pb-8">
         <section
           aria-labelledby="contact-heading"
-          className="rounded-3xl border border-line bg-surface p-8 sm:p-12"
+          className="rounded-3xl border border-line card-glow p-8 sm:p-12"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
             Contact
