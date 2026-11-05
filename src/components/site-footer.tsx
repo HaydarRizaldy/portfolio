@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Year } from "@/components/year";
+import { LogoMark } from "@/components/logo-mark";
 import { profile } from "@/content/profile";
 
 const SITE = [
@@ -22,8 +23,11 @@ export function SiteFooter() {
       <Container className="py-12">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
           <div>
-            <p className="font-display text-lg text-ink">
-              Haydar Rizaldy<span className="text-accent">.</span>
+            <p className="flex items-center gap-2.5 font-display text-lg text-ink">
+              <LogoMark className="h-5" />
+              <span>
+                Haydar Rizaldy<span className="text-accent">.</span>
+              </span>
             </p>
             <p className="mt-2 max-w-xs text-sm text-muted">
               Data &amp; technology professional — analytics, data engineering,

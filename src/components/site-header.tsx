@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LogoMark } from "@/components/logo-mark";
 import { profile } from "@/content/profile";
 
 const NAV = [
@@ -43,10 +44,13 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
         <Link
           href="/"
-          className="font-display text-xl tracking-tight text-ink"
+          className="inline-flex items-center gap-2.5 font-display text-xl tracking-tight text-ink"
           aria-label="Haydar Rizaldy — home"
         >
-          Haydar Rizaldy<span className="text-accent">.</span>
+          <LogoMark className="h-6" />
+          <span>
+            Haydar Rizaldy<span className="text-accent">.</span>
+          </span>
         </Link>
 
         <div className="flex items-center gap-3">

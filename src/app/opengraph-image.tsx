@@ -1,5 +1,14 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { profile } from "@/content/profile";
+
+// White HR monogram (transparent PNG, 1.275:1), read once at build time.
+const markData = await readFile(
+  join(process.cwd(), "public/brand/hr-mark-light.png"),
+  "base64",
+);
+const markSrc = `data:image/png;base64,${markData}`;
 
 /**
  * Default social-preview image, generated from brand tokens at build time.
@@ -25,12 +34,13 @@ export default function OpengraphImage() {
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- next/og renders plain <img> */}
+          <img src={markSrc} width={71} height={56} alt="" />
           <div
             style={{
-              width: 18,
-              height: 18,
-              borderRadius: "50%",
+              width: 1,
+              height: 40,
               backgroundColor: "#2dd4bf",
               display: "flex",
             }}
