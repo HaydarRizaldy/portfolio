@@ -42,3 +42,8 @@ next-env.d.ts
 
 # design source files (logos, favicon packs) — kept locally, not part of the site
 /assets/
+
+# local planning docs (kept on disk, not published)
+/PRD.md
+/AGENTS.md
+/ORCA_OPENCODE_WORKFLOW.md
