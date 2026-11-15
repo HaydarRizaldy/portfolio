@@ -57,10 +57,10 @@ export const projects: Project[] = [
       },
       {
         src: "/images/unified-scraper-admin.webp",
-        alt: "Unified Scraper admin page: worker health, daily API usage against Instagram and TikTok limits, a filterable queue-and-runs table with status, timing, and API counts, and an accounts table with admin and turn-off controls (employer branding, campaign names, and people's names blurred).",
+        alt: "Unified Scraper admin page: worker health with last check-in, API usage against the RapidAPI billing-period plan and the app's daily Instagram and TikTok limits, a filterable queue-and-runs table with status, timing, and API counts, and an accounts table with admin and turn-off controls (employer branding, campaign names, and people's names blurred).",
         width: 1600,
-        height: 2070,
-        caption: "The admin page: worker health, API usage against daily limits, the run queue, and account controls. Employer branding, campaign names, and people's names blurred.",
+        height: 2735,
+        caption: "The admin page: worker health, API usage against the plan and daily limits, the run queue, and account controls. Employer branding, campaign names, and people's names blurred.",
       },
     ],
     challenge:
