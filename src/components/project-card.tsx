@@ -4,7 +4,7 @@ import type { Project } from "@/content/projects";
 
 /**
  * Project card shared by Home (featured) and /projects (listing).
- * `showVisual` renders a 16:9 crop (top of the image) of the approved visual;
+ * `showVisual` renders a 16:9 crop (top of the image) of the first approved visual;
  * the full image lives on the case study. `headingLevel` keeps the outline
  * correct: h2 on /projects (directly under the page h1), h3 under a section h2.
  */
@@ -22,19 +22,20 @@ export function ProjectCard({
   className?: string;
 }) {
   const Heading = headingLevel;
+  const visual = project.visuals?.[0];
 
   return (
     <Link
       href={`/projects/${project.slug}`}
       className={`group flex h-full flex-col rounded-2xl border border-line card-glow p-6 transition-colors hover:border-ink/30 ${className}`}
     >
-      {showVisual && project.visual && (
+      {showVisual && visual && (
         <span className="mb-6 block aspect-video overflow-hidden rounded-xl border border-line">
           <Image
-            src={project.visual.src}
-            alt={project.visual.alt}
-            width={project.visual.width}
-            height={project.visual.height}
+            src={visual.src}
+            alt={visual.alt}
+            width={visual.width}
+            height={visual.height}
             className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.015]"
             sizes="(min-width: 72rem) 68rem, 100vw"
             priority={priority}

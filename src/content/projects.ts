@@ -1,10 +1,13 @@
 /**
- * Project case studies — PRD 5 and 6. Order per case study: hero, visual,
+ * Project case studies — PRD 5 and 6. Order per case study: hero, visuals,
  * challenge, solution, key capabilities, impact, contribution, tech details.
  * Accuracy rules: estimates are labelled as estimates; unverified metrics stay
  * out; private repos are never linked.
  */
 export type Capability = { title: string; detail: string };
+
+// width/height = intrinsic pixel size of the image file (keeps aspect ratio correct).
+export type Visual = { src: string; alt: string; width: number; height: number; caption?: string };
 
 export type Project = {
   slug: string;
@@ -13,8 +16,8 @@ export type Project = {
   role: string;
   cardLabel: string; // short "type · role" eyebrow for cards; full `role` shows on the case study
   tags: string[];
-  // width/height = intrinsic pixel size of the image file (keeps aspect ratio correct).
-  visual?: { src: string; alt: string; width: number; height: number; caption?: string };
+  // First visual is the card thumbnail; two or more show as slides on the case study.
+  visuals?: Visual[];
   challenge: string;
   solution: string;
   capabilities: Capability[];
@@ -33,46 +36,62 @@ export const projects: Project[] = [
     slug: "unified-scraper",
     title: "Unified Social Media Scraper",
     summary:
-      "A single queue-driven app for Instagram and TikTok comment extraction and thumbnail downloads — compressing a manual campaign workflow by an estimated 83%.",
+      "A hosted, team-shared app that queues Instagram and TikTok comment scraping and thumbnail downloads on a server worker — compressing a manual campaign workflow by an estimated 83%.",
     role: "Sole Developer & Project Creator — internal tool, built end-to-end",
     cardLabel: "Internal tool · Sole developer",
     tags: ["Automation", "Web App", "Queues"],
-    visual: {
-      src: "/images/unified-scraper.webp",
-      alt: "Unified Scraper web application showing campaign setup, post-URL validation, run configuration, and a live activity monitor (employer branding redacted).",
-      width: 1022,
-      height: 1055,
-      caption: "Campaign setup, URL validation, and the live process monitor. Employer branding redacted; no client data shown.",
-    },
+    visuals: [
+      {
+        src: "/images/unified-scraper.webp",
+        alt: "Unified Scraper web application after a completed run: campaign setup, post URLs, selected comment and thumbnail tasks, file output, and a live process log of comments collected per post (employer branding and client data blurred).",
+        width: 1200,
+        height: 1810,
+        caption: "A finished run: campaign setup, task selection, packaged results, and the live process log. Employer branding and client/campaign data blurred.",
+      },
+      {
+        src: "/images/unified-scraper-history.webp",
+        alt: "Unified Scraper run history: a searchable, status-filtered list of past comment and thumbnail runs, each with link count, API requests, timestamp, a Succeeded, Partial, Failed, or Cancelled status, and Download and delete buttons (employer branding and campaign names blurred).",
+        width: 1600,
+        height: 910,
+        caption: "Run history: every comment and thumbnail run with its status, API use, and a re-download button. Employer branding and campaign names blurred.",
+      },
+      {
+        src: "/images/unified-scraper-admin.webp",
+        alt: "Unified Scraper admin page: worker health, daily API usage against Instagram and TikTok limits, a filterable queue-and-runs table with status, timing, and API counts, and an accounts table with admin and turn-off controls (employer branding, campaign names, and people's names blurred).",
+        width: 1600,
+        height: 2070,
+        caption: "The admin page: worker health, API usage against daily limits, the run queue, and account controls. Employer branding, campaign names, and people's names blurred.",
+      },
+    ],
     challenge:
       "Social-media campaign runs used to be a patchwork: separate scripts for comments and thumbnails, URLs pasted ad hoc, results scattered across folders, and long manual supervision. A single campaign could take around an hour of hands-on work.",
     solution:
-      "A centralized internal web application where a campaign becomes a task: validated Instagram/TikTok URLs go into a server-side queue with configurable comment and thumbnail jobs. Progress and logs stream live; finished runs export as Excel/JPG inside a single ZIP, with task history and API-usage monitoring kept in the app.",
+      "A hosted internal web app where a campaign becomes a task tab: validated Instagram/TikTok links join a shared server queue as separate comment and thumbnail jobs, picked up one at a time by an isolated Docker worker. Progress and logs update live; finished runs download as one ZIP with an Excel comments workbook and named thumbnails, kept privately for 30 days. Paid API calls are budgeted against daily per-platform caps, and an admin page watches worker health, usage, the queue, and accounts.",
     capabilities: [
       {
-        title: "Campaign-based task setup",
+        title: "Shared queue & isolated worker",
         detail:
-          "Brand, campaign, period, and phase captured per run; up to 100 Instagram or TikTok URLs validated before a job starts.",
+          "Server-saved task tabs of up to 100 cleaned, de-duplicated links; each task runs as its own job on a pull-only Docker worker, with retries, Stop run, and live progress and logs.",
       },
       {
-        title: "Server-side queue execution",
+        title: "API budget & failure triage",
         detail:
-          "Selected tasks join a server queue independently; progress, process logs, and failures are observable in real time.",
+          "Each run's paid requests are checked against daily per-platform caps before it starts; failed links are grouped by reason and can be re-queued in one click.",
       },
       {
-        title: "Packaged outputs & history",
+        title: "Packaged results & history",
         detail:
-          "Each run ships as a ZIP with per-task Excel (comments) and JPG (thumbnails) outputs, plus stored run history.",
+          "One ZIP per run with a comments workbook and position-named thumbnails, plus a searchable History of every run with re-download for 30 days.",
       },
       {
-        title: "Controlled access & monitoring",
+        title: "Admin page & team sign-in",
         detail:
-          "Authentication with server-side credential handling, and API-usage monitoring per platform.",
+          "Worker health, API usage, everyone's runs, and account controls for admins; Lark sign-in for the team, row-level security, signed download links, and server-only secrets.",
       },
     ],
     stats: [
       { value: "60 → 10 min", label: "per campaign run", note: "Estimate" },
-      { value: "3", label: "users so far", note: "Wider access intended" },
+      { value: "Whole team", label: "can sign in", note: "Via Lark sign-in" },
     ],
     impact: [
       {
@@ -80,14 +99,81 @@ export const projects: Project[] = [
         caveat: "Owner estimate from comparable workflows — not a formal benchmark.",
       },
       {
-        text: "Three users have adopted it so far, with wider departmental access intended as the tool matures.",
-        caveat: "Adoption is growth-stage, not department-wide — reported as such.",
+        text: "Open to the whole team: anyone in the department can sign in with their Lark account, and their first sign-in creates their account — no setup on their computer.",
+        caveat: "Describes who has access, not how many people use it.",
       },
     ],
     contribution:
-      "Designed and built the entire application independently: the interface, the scraping services, the queue architecture with live monitoring, the export pipeline, and the authentication/credential handling.",
-    tech: ["Web application", "Vercel", "Supabase", "Docker", "Server-side queues"],
+      "Designed and built the entire application independently: the interface, the scraping adapters, the queue and worker with live monitoring, the API budgeting, the export pipeline, the admin page, and the sign-in and security hardening.",
+    tech: ["Python", "JavaScript", "Vercel Functions", "Supabase", "Docker", "Lark sign-in", "RapidAPI", "TikWM API"],
     repositoryNote: "Internal company application. The repository is private — source code, credentials, and campaign data are not published.",
+  },
+  {
+    slug: "yellow-cart-preview",
+    title: "Yellow Cart Preview",
+    summary:
+      "An internal web app that plays TikTok Shop (yellow-cart) videos on desktop — with details, MP4 download, and the post's comments — where TikTok normally shows them only in its mobile app.",
+    role: "Sole Developer & Project Creator — internal tool, built end-to-end",
+    cardLabel: "Internal tool · Sole developer",
+    tags: ["Web App", "TikTok Shop", "Internal Tool"],
+    visuals: [
+      {
+        src: "/images/yellow-cart-preview.webp",
+        alt: "Yellow Cart Preview web application with a box for pasting TikTok links and a list of ten links, each marked with a yellow-cart badge and Preview, open, copy, and remove buttons (employer branding, links, and creator handles blurred).",
+        width: 1200,
+        height: 1260,
+        caption: "The link list, with TikTok Shop videos marked by the yellow-cart badge. Employer branding, links, and creator handles blurred.",
+      },
+      {
+        src: "/images/yellow-cart-preview-details.webp",
+        alt: "Yellow Cart Preview player popup on the Details tab: a 9:16 video player beside the yellow-cart badge, duration, post date, view/like/comment/share/save tiles, an HD/SD switch, and Download MP4, Download cover, and Open on TikTok buttons (video, creator, caption, and figures blurred).",
+        width: 1600,
+        height: 917,
+        caption: "The player's Details tab: badges, engagement tiles, quality switch, and downloads. Video, creator, caption, and figures blurred.",
+      },
+      {
+        src: "/images/yellow-cart-preview-comments.webp",
+        alt: "Yellow Cart Preview player popup on the Comments tab: a note about TikWM limits, the First 14 days only switch, a live-check status line, and a list of comments with dates and like counts (video, creator, and commenter names blurred).",
+        width: 1600,
+        height: 917,
+        caption: "The player's Comments tab: live checking, the first-14-days switch, and comment threads. Video, creator, and commenter names blurred.",
+      },
+    ],
+    challenge:
+      "TikTok hides yellow-cart (TikTok Shop) videos from its desktop site and embeds, so checking campaign content meant reaching for a phone — no easy way to watch, download, or read comments from a desktop workflow.",
+    solution:
+      "A signed-in internal web app: paste TikTok links, and each one previews in a 9:16 player with its details, stats, MP4 and cover downloads, and the post's comments. The browser reads video data from TikWM, a third-party service built on TikTok's app feed, so Shop videos play; the server only handles sign-in and stores nothing that is previewed.",
+    capabilities: [
+      {
+        title: "Link list with validation",
+        detail:
+          "Full and short TikTok links are normalized, stripped of tracking parameters, and de-duplicated; invalid lines stay in place with the reason.",
+      },
+      {
+        title: "Desktop player & downloads",
+        detail:
+          "HD/SD player with automatic fallback, creator and engagement details, a yellow-cart badge, and MP4/cover downloads with consistent file names.",
+      },
+      {
+        title: "Live comments & 14-day view",
+        detail:
+          "Paged comments and reply threads, refreshed every 30 seconds while open, with a switch to show only comments from a video's first 14 days.",
+      },
+      {
+        title: "Team-only sign-in & hardening",
+        detail:
+          "Lark sign-in limited to the team, sharing accounts with the Unified Scraper; signed session cookies, a strict Content-Security-Policy, and server-only secrets.",
+      },
+    ],
+    impact: [
+      {
+        text: "Lets the team review TikTok Shop videos and their comments from a desktop browser, without switching to the mobile app.",
+      },
+    ],
+    contribution:
+      "Designed and built the whole tool independently: the interface, the TikWM client with rate limiting and caching, the comments views, the Lark sign-in reused from the Unified Scraper, and the offline test suite.",
+    tech: ["JavaScript", "Vercel Functions", "Supabase", "Lark sign-in", "TikWM API"],
+    repositoryNote: "Internal company application. The repository is private — source code, credentials, and team data are not published.",
   },
   {
     slug: "course-recommender",

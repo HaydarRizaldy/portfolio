@@ -138,9 +138,9 @@ export default function HomePage() {
             title="Selected work"
             action={{ href: "/projects", label: "All projects →" }}
           />
-          {/* Curated cards (PRD 5) — same content source as /projects. */}
+          {/* Curated cards (PRD 5) — same content source as /projects; the first three are featured. */}
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
+            {projects.slice(0, 3).map((project) => (
               <li key={project.slug}>
                 <ProjectCard project={project} headingLevel="h3" />
               </li>

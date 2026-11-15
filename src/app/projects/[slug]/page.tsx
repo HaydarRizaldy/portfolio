@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
 import { Button } from "@/components/button";
+import { VisualGallery } from "@/components/visual-gallery";
 import { projects, type Project } from "@/content/projects";
 
 /**
@@ -101,38 +101,7 @@ export default async function CaseStudyPage({
         </header>
 
         {/* 2. Visual — real approved imagery only; never a fabricated screenshot. */}
-        {project.visual ? (
-          <figure className="mt-12">
-            <a
-              href={project.visual.src}
-              target="_blank"
-              rel="noreferrer"
-              className="group block overflow-hidden rounded-2xl border border-line bg-surface"
-            >
-              <Image
-                src={project.visual.src}
-                alt={project.visual.alt}
-                width={project.visual.width}
-                height={project.visual.height}
-                className="h-auto w-full"
-                sizes="(min-width: 72rem) 72rem, 100vw"
-                priority
-              />
-              <span className="sr-only">(opens full-size image in a new tab)</span>
-            </a>
-            <figcaption className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-muted">
-              <span>{project.visual.caption}</span>
-              <a
-                href={project.visual.src}
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium text-accent underline-offset-4 hover:underline"
-              >
-                View full size ↗
-              </a>
-            </figcaption>
-          </figure>
-        ) : null}
+        {project.visuals?.length ? <VisualGallery visuals={project.visuals} /> : null}
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1fr)_17rem]">
           <div className="space-y-10">
