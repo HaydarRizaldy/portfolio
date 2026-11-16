@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 import { Container } from "@/components/container";
 import { ProjectCard } from "@/components/project-card";
 import { PageHeader } from "@/components/page-header";
 import { projects } from "@/content/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Projects — Haydar Rizaldy",
-};
+  description:
+    "Selected work by Haydar Rizaldy: internal tools, research, and machine-learning projects, each with a case study.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

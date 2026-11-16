@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Timeline } from "@/components/timeline";
@@ -8,9 +9,12 @@ import { experience } from "@/content/experience";
 import { education } from "@/content/education";
 import { skillGroups, certifications, languages } from "@/content/skills";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About — Haydar Rizaldy",
-};
+  description:
+    "Experience, education, skills, and certifications of Haydar Rizaldy across data analytics, data engineering, and automation.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

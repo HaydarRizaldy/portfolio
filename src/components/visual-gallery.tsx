@@ -109,7 +109,10 @@ export function VisualGallery({ visuals }: { visuals: Visual[] }) {
               height={v.height}
               className="h-auto w-full"
               sizes="(min-width: 72rem) 72rem, 100vw"
+              // Hidden slides would lazy-load only once shown (a blank frame on
+              // slow phones); the images are small, so fetch them all up front.
               priority={i === 0}
+              loading={i === 0 ? undefined : "eager"}
             />
             <span className="sr-only">(opens full-size image in a new tab)</span>
           </a>

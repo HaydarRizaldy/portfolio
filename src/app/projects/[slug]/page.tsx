@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -29,10 +30,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return { title: "Not found — Haydar Rizaldy" };
-  return {
+  return pageMetadata({
     title: `${project.title} — Haydar Rizaldy`,
     description: project.summary,
-  };
+    path: `/projects/${project.slug}`,
+  });
 }
 
 function Section({
