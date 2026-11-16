@@ -34,7 +34,8 @@ interactive reporting stack on Vercel.
 
 | Project | Summary | Links |
 |---|---|---|
-| **Unified Social Media Scraper** | Queue-driven internal app for Instagram & TikTok comment extraction and thumbnail downloads — an estimated 83% less time per campaign run (estimate, not a benchmark). | [Case study](https://haydarrizaldy.vercel.app/projects/unified-scraper) · repository is private |
+| **Unified Social Media Scraper** | Hosted, team-shared app that queues Instagram & TikTok comment scraping and thumbnail downloads on a server worker — an estimated 83% less time per campaign run (estimate, not a benchmark). | [Case study](https://haydarrizaldy.vercel.app/projects/unified-scraper) · repository is private |
+| **Yellow Cart Preview** | Internal web app that plays TikTok Shop (yellow-cart) videos on desktop, with details, MP4 download, and the post's comments. | [Case study](https://haydarrizaldy.vercel.app/projects/yellow-cart-preview) · repository is private |
 | **Personalized Online Course Recommender** | Research on course recommendation with truncated SVD and clustering — first-author paper at IEEE ICITISEE 2025. | [Case study](https://haydarrizaldy.vercel.app/projects/course-recommender) · [DOI](https://doi.org/10.1109/ICITISEE68184.2025.11355135) |
 | **Credit Risk Prediction** | End-to-end credit-risk model, from preprocessing to evaluation — final project of the ID/X Partners data-science virtual internship. | [Case study](https://haydarrizaldy.vercel.app/projects/credit-risk-prediction) · [Repository](https://github.com/HaydarRizaldy/Credit-Risk-Prediction-and-Analysis) |
 
@@ -50,6 +51,7 @@ interactive reporting stack on Vercel.
 - Light and dark themes that follow the system setting, with a manual toggle
 - Typewriter greeting that respects reduced-motion preferences
 - Reusable case-study template (challenge → solution → capabilities → impact → contribution)
+- Screenshot carousels on case studies (buttons, dots, arrow keys, swipe); internal-tool screenshots are redacted
 - SEO metadata, generated Open Graph image, sitemap, and robots.txt
 - Accessible navigation: skip link, visible focus states, semantic landmarks
 
