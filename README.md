@@ -65,7 +65,7 @@ npm run build
 ```
 
 Site copy lives in [`src/content/`](src/content) (profile, experience, education, skills, projects), so most text
-changes don't touch components. Production deploys run with `vercel deploy --prod`.
+changes don't touch components. Pushes to `main` deploy to production automatically on Vercel.
 
 ---
 
