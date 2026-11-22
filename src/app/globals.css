@@ -64,6 +64,144 @@
   animation: caret-blink 1s steps(1) infinite;
 }
 
+/*
+ * Motion. Everything here is subtle and switched off by the reduced-motion
+ * block at the end (plus a few explicit `animation: none` overrides).
+ */
+
+/* Fade-up on scroll: MotionEffects marks elements below the fold as pending,
+   reveals them as they enter, and sets them back to pending (a quicker fade
+   out, no stagger) when scrolling up drops them below the fold again.
+   No JS = nothing is ever hidden. */
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.35s ease-in,
+    transform 0.35s ease-in;
+}
+
+[data-reveal="shown"] {
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Headline words and toolkit tiles rise in on load, staggered by --i. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+}
+
+/* Transforms need a non-inline box: give word spans `inline-block`. */
+.rise-in {
+  animation: rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * var(--rise-step, 80ms) + var(--rise-start, 150ms));
+}
+
+/* Project cards: lift on hover, and a soft glow that follows the pointer
+   (MotionEffects sets --mx/--my). --spot is registered so it can fade. */
+@property --spot {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@utility card-spotlight {
+  background-color: var(--surface);
+  background-image:
+    radial-gradient(18rem circle at var(--mx, 50%) var(--my, 0%), var(--spot), transparent 70%),
+    radial-gradient(120% 90% at 0% 0%, var(--card-glow), transparent 60%);
+  transition:
+    --spot 0.3s ease-out,
+    transform 0.2s ease-out,
+    border-color 0.2s ease-out,
+    box-shadow 0.2s ease-out;
+
+  &:hover {
+    --spot: var(--card-glow);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px -18px color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+}
+
+/* Carousel: the slide coming in slides from the side you're heading to. */
+@keyframes slide-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+}
+
+[data-dir="next"] > [data-slide]:not([hidden]) {
+  animation: slide-from-right 0.35s ease-out;
+}
+
+[data-dir="prev"] > [data-slide]:not([hidden]) {
+  animation: slide-from-left 0.35s ease-out;
+}
+
+/* Timeline: an accent line draws down the track as you scroll (where the
+   browser supports scroll-driven animations; elsewhere the plain track shows),
+   each dot pulses once when its entry is revealed, and the current role's dot
+   breathes. */
+@keyframes draw-down {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.timeline-progress::before {
+  content: "";
+  display: none;
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 1px;
+  height: 100%;
+  background: var(--accent);
+}
+
+@supports (animation-timeline: view()) {
+  .timeline-progress::before {
+    display: block;
+    transform-origin: top;
+    animation: draw-down linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 65%;
+  }
+}
+
+@keyframes dot-pulse {
+  50% {
+    transform: scale(1.6);
+  }
+}
+
+[data-reveal="shown"] > .timeline-dot:not(.timeline-dot-current) {
+  animation: dot-pulse 0.5s ease-out 0.25s;
+}
+
+@keyframes dot-breathe {
+  50% {
+    box-shadow: 0 0 0 7px var(--accent-soft);
+  }
+}
+
+.timeline-dot-current {
+  animation: dot-breathe 2.4s ease-in-out infinite;
+}
+
 body {
   background: var(--background);
   color: var(--ink);
@@ -94,5 +232,15 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Scroll-driven and looping effects ignore duration, so stop them outright. */
+  .timeline-progress::before,
+  .timeline-dot-current {
+    animation: none !important;
+  }
+
+  .card-spotlight:hover {
+    transform: none;
   }
 }

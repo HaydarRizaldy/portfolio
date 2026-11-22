@@ -3,6 +3,7 @@ import { Fira_Code, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { MotionEffects } from "@/components/motion-effects";
 import { siteUrl } from "@/lib/site";
 
 const inter = Inter({
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        <MotionEffects />
       </body>
     </html>
   );

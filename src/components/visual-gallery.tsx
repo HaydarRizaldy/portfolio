@@ -19,12 +19,17 @@ const SWIPE_PX = 40; // horizontal travel that counts as a swipe
  */
 export function VisualGallery({ visuals }: { visuals: Visual[] }) {
   const [current, setCurrent] = useState(0);
+  // Which way the last change went; the incoming slide slides in from that side.
+  const [dir, setDir] = useState<"next" | "prev">();
   const touchX = useRef<number | null>(null);
   const count = visuals.length;
   const many = count > 1;
   const visual = visuals[current];
 
-  const go = (i: number) => setCurrent((i + count) % count);
+  const go = (i: number) => {
+    setDir(i > current ? "next" : "prev");
+    setCurrent((i + count) % count);
+  };
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === "ArrowLeft") go(current - 1);
@@ -85,6 +90,7 @@ export function VisualGallery({ visuals }: { visuals: Visual[] }) {
 
       <div
         className="overflow-hidden rounded-2xl border border-line bg-surface"
+        data-dir={dir}
         onTouchStart={many ? onTouchStart : undefined}
         onTouchEnd={many ? onTouchEnd : undefined}
       >
@@ -96,6 +102,7 @@ export function VisualGallery({ visuals }: { visuals: Visual[] }) {
             rel="noreferrer"
             hidden={i !== current}
             className="block"
+            data-slide=""
             {...(many && {
               role: "group",
               "aria-roledescription": "slide",
@@ -148,7 +155,7 @@ function SlideButton({
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="grid size-9 place-items-center rounded-full border border-line text-xl leading-none text-ink transition-colors hover:border-ink/30 hover:text-accent"
+      className="grid size-9 place-items-center rounded-full border border-line text-xl leading-none text-ink transition-[color,border-color,transform] duration-150 hover:border-ink/30 hover:text-accent active:scale-90"
     >
       <span aria-hidden="true">{children}</span>
     </button>

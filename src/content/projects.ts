@@ -317,7 +317,7 @@ export const projects: Project[] = [
     ],
     contribution:
       "Independently developed the end-to-end solution during the internship — no published benchmark metrics exist, and none are claimed here.",
-    tech: ["Python", "Machine Learning", "Classification", "Feature Engineering"],
+    tech: ["Python", "pandas", "scikit-learn", "Machine Learning", "Classification", "Feature Engineering"],
     link: {
       label: "View repository on GitHub",
       href: "https://github.com/HaydarRizaldy/Credit-Risk-Prediction-and-Analysis",

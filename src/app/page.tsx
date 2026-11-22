@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
@@ -5,6 +6,7 @@ import { Button } from "@/components/button";
 import { CopyEmail } from "@/components/copy-email";
 import { ProjectCard } from "@/components/project-card";
 import { Typewriter } from "@/components/typewriter";
+import { ToolLogo } from "@/components/tool-logo";
 import { profile } from "@/content/profile";
 import { experience } from "@/content/experience";
 import { projects } from "@/content/projects";
@@ -84,7 +86,15 @@ export default function HomePage() {
         <section className="grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div>
             <h1 className="max-w-3xl font-display text-4xl leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              {profile.headline}
+              {/* Words rise in one by one; the spaces stay real text for copy/paste. */}
+              {profile.headline.split(" ").map((word, i) => (
+                <span key={i}>
+                  {i > 0 && " "}
+                  <span className="rise-in inline-block" style={{ "--i": i } as CSSProperties}>
+                    {word}
+                  </span>
+                </span>
+              ))}
             </h1>
             <p className="mt-6 max-w-xl text-base text-muted sm:text-lg">
               {profile.intro}
@@ -100,30 +110,15 @@ export default function HomePage() {
           </div>
 
           <aside
-            aria-label="At a glance"
+            aria-label="Toolkit"
             className="rounded-2xl border border-line card-glow p-6"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
-              At a glance
+              Toolkit
             </p>
-            <ul className="mt-5 space-y-5">
-              {profile.atAGlance.map((item) => (
-                <li
-                  key={item.label}
-                  className="border-t border-line pt-5 first:border-t-0 first:pt-0"
-                >
-                  <span className="block font-display text-3xl tracking-tight text-ink">
-                    {item.value}
-                  </span>
-                  <span className="mt-1 block text-sm text-muted">
-                    {item.label}
-                  </span>
-                  {"note" in item && item.note && (
-                    <span className="mt-1 block text-xs text-muted">
-                      {item.note}
-                    </span>
-                  )}
-                </li>
+            <ul className="mt-5 grid grid-cols-4 gap-3">
+              {profile.toolkit.map((name, i) => (
+                <ToolLogo key={name} name={name} index={i} />
               ))}
             </ul>
           </aside>
@@ -140,8 +135,8 @@ export default function HomePage() {
           />
           {/* Curated cards (PRD 5) — same content source as /projects; the first three are featured. */}
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.slice(0, 3).map((project) => (
-              <li key={project.slug}>
+            {projects.slice(0, 3).map((project, i) => (
+              <li key={project.slug} data-reveal="" style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}>
                 <ProjectCard project={project} headingLevel="h3" />
               </li>
             ))}
@@ -158,9 +153,11 @@ export default function HomePage() {
             action={{ href: "/about", label: "See the full timeline →" }}
           />
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {highlights.map((item) => (
+            {highlights.map((item, i) => (
               <div
                 key={`${item.org}-${item.period}`}
+                data-reveal=""
+                style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}
                 className="rounded-2xl border border-line card-glow p-6"
               >
                 <p className="text-xs uppercase tracking-[0.18em] text-muted">
@@ -179,6 +176,7 @@ export default function HomePage() {
 
       <Container className="pb-8">
         <section
+          data-reveal=""
           aria-labelledby="contact-heading"
           className="rounded-3xl border border-line card-glow p-8 sm:p-12"
         >

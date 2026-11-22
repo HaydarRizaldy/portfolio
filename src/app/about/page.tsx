@@ -55,7 +55,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="mt-20" aria-labelledby="education-heading">
+        <section data-reveal="" className="mt-20" aria-labelledby="education-heading">
           <h2
             id="education-heading"
             className="text-xs font-semibold uppercase tracking-[0.22em] text-muted"
@@ -84,7 +84,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="mt-20" aria-labelledby="skills-heading">
+        <section data-reveal="" className="mt-20" aria-labelledby="skills-heading">
           <h2
             id="skills-heading"
             className="text-xs font-semibold uppercase tracking-[0.22em] text-muted"

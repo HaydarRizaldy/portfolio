@@ -5,7 +5,7 @@ type Variant = "primary" | "outline" | "ghost";
 type Size = "md" | "sm";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors duration-150";
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[color,background-color,border-color,transform] duration-150 active:scale-[0.97]";
 
 /** TODO(M1 review): button radius/weight not final until the user picks a direction. */
 const variants: Record<Variant, string> = {

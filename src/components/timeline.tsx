@@ -18,16 +18,17 @@ export function Timeline({
   }[];
 }) {
   return (
-    <ol className="relative space-y-10 border-l border-line pl-6 sm:pl-8">
+    // timeline-progress: an accent line (::before) draws over the track on scroll.
+    <ol className="timeline-progress relative space-y-10 border-l border-line pl-6 sm:pl-8">
       {items.map((item, index) => (
-        <li key={index} className="relative">
+        <li key={index} className="relative" data-reveal="">
           {/* Centred on the 1px line: list padding + half the line + half the
               10px dot (5.5px). Keep in step with the ol's pl-6 / sm:pl-8. */}
           <span
             aria-hidden="true"
-            className={`absolute top-1.5 -left-[calc(1.5rem+5.5px)] h-2.5 w-2.5 rounded-full border sm:-left-[calc(2rem+5.5px)] ${
+            className={`timeline-dot absolute top-1.5 -left-[calc(1.5rem+5.5px)] h-2.5 w-2.5 rounded-full border sm:-left-[calc(2rem+5.5px)] ${
               item.current
-                ? "border-accent bg-accent ring-4 ring-accent-soft"
+                ? "timeline-dot-current border-accent bg-accent ring-4 ring-accent-soft"
                 : "border-muted/60 bg-background"
             }`}
           />

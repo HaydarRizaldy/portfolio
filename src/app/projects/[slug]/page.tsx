@@ -48,6 +48,7 @@ function Section({
 }) {
   return (
     <section
+      data-reveal=""
       aria-labelledby={id}
       className="border-t border-line pt-10 first:border-t-0 first:pt-0"
     >

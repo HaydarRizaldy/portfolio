@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/site";
 import { Container } from "@/components/container";
@@ -26,7 +27,12 @@ export default function ProjectsPage() {
 
         <ul className="mt-14 grid gap-4 sm:grid-cols-2">
           {projects.map((project, index) => (
-            <li key={project.slug} className={index === 0 ? "sm:col-span-2" : ""}>
+            <li
+              key={project.slug}
+              data-reveal=""
+              style={{ "--reveal-delay": `${(index % 2) * 80}ms` } as CSSProperties}
+              className={index === 0 ? "sm:col-span-2" : ""}
+            >
               <ProjectCard project={project} showVisual priority={index === 0} />
             </li>
           ))}

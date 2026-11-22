@@ -11,7 +11,7 @@ export const profile = {
     "Tangerang, Banten, Indonesia",
   ],
   // PRD 1 working headline — a proposal; may be refined during visual design.
-  headline: "Turning Data Into Insight. Building Solutions That Matter.",
+  headline: "Make the data work.",
   intro:
     "Data engineer focused on analytics, data engineering, and applied automation — currently an intern at ALVA Digital Network. Previously supported bank-wide master data management at CIMB Niaga and shipped an interactive reporting stack on Vercel.",
   // Hero terminal greeting. The second line cycles through `typewriter`.
@@ -30,22 +30,16 @@ export const profile = {
     "Ctrl+C, Ctrl+V, Ctrl+Pray",
     "Open to Collaborate - Let's Connect!",
   ],
-  // Hero "at a glance" panel — each item restates a fact already verified
-  // elsewhere on the site (projects.ts / experience.ts). Estimates stay labelled.
-  atAGlance: [
-    {
-      value: "≈83%",
-      label: "less time per campaign run with the Unified Scraper",
-      note: "Estimate, not a benchmark",
-    },
-    {
-      value: "IEEE",
-      label: "first-author paper, ICITISEE 2025",
-    },
-    {
-      value: "3",
-      label: "organizations in data roles — ALVA, CIMB Niaga, ID/X Partners",
-    },
+  // Hero "Toolkit" panel — only tools the owner's work shows being used:
+  // projects.ts tech lists, the Unified Scraper README (PostgreSQL migrations
+  // and tests, GitHub Actions CI), and the public Credit Risk notebook (pandas,
+  // scikit-learn). Every entry has an official logo in tool-logo.tsx.
+  // Ordered: languages & database, data, platforms, automation & APIs.
+  toolkit: [
+    "Python", "PostgreSQL", "JavaScript",
+    "pandas", "scikit-learn", "OpenCV",
+    "Supabase", "Vercel", "Docker",
+    "GitHub Actions", "Google Apps Script", "RapidAPI",
   ],
   email: "haydarrizaldyputera@gmail.com",
   linkedin: "https://www.linkedin.com/in/haydar-rizaldy/",

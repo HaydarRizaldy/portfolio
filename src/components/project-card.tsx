@@ -27,7 +27,7 @@ export function ProjectCard({
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`group flex h-full flex-col rounded-2xl border border-line card-glow p-6 transition-colors hover:border-ink/30 ${className}`}
+      className={`group flex h-full flex-col rounded-2xl border border-line card-spotlight p-6 hover:border-ink/30 ${className}`}
     >
       {showVisual && visual && (
         <span className="mb-6 block aspect-video overflow-hidden rounded-xl border border-line">
@@ -60,7 +60,10 @@ export function ProjectCard({
         ))}
       </ul>
       <span className="mt-auto pt-5 text-sm font-medium text-ink transition-colors group-hover:text-accent">
-        Read the case study →
+        Read the case study{" "}
+        <span aria-hidden="true" className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+          →
+        </span>
       </span>
     </Link>
   );
