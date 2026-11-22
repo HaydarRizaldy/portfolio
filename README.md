@@ -36,6 +36,7 @@ interactive reporting stack on Vercel.
 |---|---|---|
 | **Unified Social Media Scraper** | Hosted, team-shared app that queues Instagram & TikTok comment scraping and thumbnail downloads on a server worker — an estimated 83% less time per campaign run (estimate, not a benchmark). | [Case study](https://haydarrizaldy.vercel.app/projects/unified-scraper) · repository is private |
 | **Yellow Cart Preview** | Internal web app that plays TikTok Shop (yellow-cart) videos on desktop, with details, MP4 download, and the post's comments. | [Case study](https://haydarrizaldy.vercel.app/projects/yellow-cart-preview) · repository is private |
+| **Insight Capture** | Internal web app that reads KOL insight recordings and screenshots into numbers with text recognition and copies the Lark PM metrics. | [Case study](https://haydarrizaldy.vercel.app/projects/insight-capture) · repository is private |
 | **Personalized Online Course Recommender** | Research on course recommendation with truncated SVD and clustering — first-author paper at IEEE ICITISEE 2025. | [Case study](https://haydarrizaldy.vercel.app/projects/course-recommender) · [DOI](https://doi.org/10.1109/ICITISEE68184.2025.11355135) |
 | **Credit Risk Prediction** | End-to-end credit-risk model, from preprocessing to evaluation — final project of the ID/X Partners data-science virtual internship. | [Case study](https://haydarrizaldy.vercel.app/projects/credit-risk-prediction) · [Repository](https://github.com/HaydarRizaldy/Credit-Risk-Prediction-and-Analysis) |
 

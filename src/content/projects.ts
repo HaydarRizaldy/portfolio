@@ -66,7 +66,7 @@ export const projects: Project[] = [
     challenge:
       "Social-media campaign runs used to be a patchwork: separate scripts for comments and thumbnails, URLs pasted ad hoc, results scattered across folders, and long manual supervision. A single campaign could take around an hour of hands-on work.",
     solution:
-      "A hosted internal web app where a campaign becomes a task tab: validated Instagram/TikTok links join a shared server queue as separate comment and thumbnail jobs, picked up one at a time by an isolated Docker worker. Progress and logs update live; finished runs download as one ZIP with an Excel comments workbook and named thumbnails, kept privately for 30 days. Paid API calls are budgeted against daily per-platform caps, and an admin page watches worker health, usage, the queue, and accounts.",
+      "A hosted internal web app where a campaign becomes a task tab: validated Instagram/TikTok links join a shared server queue as separate comment and thumbnail jobs, picked up one at a time by an isolated Docker worker. Progress and logs update live; finished runs download as one ZIP with an Excel comments workbook and named thumbnails, kept privately for 30 days. Paid API calls are budgeted against daily per-platform caps, and an admin page watches worker health, usage, the queue, and accounts. A guided walkthrough and a tool switcher tie it to the team's other tools, and a nightly job clears expired runs and files.",
     capabilities: [
       {
         title: "Shared queue & isolated worker",
@@ -142,12 +142,12 @@ export const projects: Project[] = [
     challenge:
       "TikTok hides yellow-cart (TikTok Shop) videos from its desktop site and embeds, so checking campaign content meant reaching for a phone — no easy way to watch, download, or read comments from a desktop workflow.",
     solution:
-      "A signed-in internal web app: paste TikTok links, and each one previews in a 9:16 player with its details, stats, MP4 and cover downloads, and the post's comments. The browser reads video data from TikWM, a third-party service built on TikTok's app feed, so Shop videos play; the server only handles sign-in and stores nothing that is previewed.",
+      "A signed-in internal web app: paste TikTok links, and each one previews in a 9:16 player with its details, stats, MP4 and cover downloads, and the post's comments. The browser reads video data from TikWM, a third-party service built on TikTok's app feed, so Shop videos play. Videos are never stored; each person's link list is saved to their account and cleared after 30 days.",
     capabilities: [
       {
-        title: "Link list with validation",
+        title: "Saved, checked link list",
         detail:
-          "Full and short TikTok links are normalized, stripped of tracking parameters, and de-duplicated; invalid lines stay in place with the reason.",
+          "Links are checked as you type, normalized, and de-duplicated; the list follows you to any browser you sign in to, and links are deleted 30 days after they're added.",
       },
       {
         title: "Desktop player & downloads",
@@ -162,7 +162,7 @@ export const projects: Project[] = [
       {
         title: "Team-only sign-in & hardening",
         detail:
-          "Lark sign-in limited to the team, sharing accounts with the Unified Scraper; signed session cookies, a strict Content-Security-Policy, and server-only secrets.",
+          "Lark sign-in limited to the team, sharing accounts and a tool switcher with the Unified Scraper and Insight Capture; a guided walkthrough, signed session cookies, a strict Content-Security-Policy, and server-only secrets.",
       },
     ],
     impact: [
@@ -174,6 +174,66 @@ export const projects: Project[] = [
       "Designed and built the whole tool independently: the interface, the TikWM client with rate limiting and caching, the comments views, the Lark sign-in reused from the Unified Scraper, and the offline test suite.",
     tech: ["JavaScript", "Vercel Functions", "Supabase", "Lark sign-in", "TikWM API"],
     repositoryNote: "Internal company application. The repository is private — source code, credentials, and team data are not published.",
+  },
+  {
+    slug: "insight-capture",
+    title: "Insight Capture",
+    summary:
+      "An internal web app that reads KOL insight screen recordings and screenshots into numbers with text recognition, then copies the Lark PM metrics straight into project tracking and reports.",
+    role: "Sole Developer & Project Creator — internal tool, built end-to-end",
+    cardLabel: "Internal tool · Sole developer",
+    tags: ["Web App", "OCR", "Internal Tool"],
+    visuals: [
+      {
+        src: "/images/insight-capture.webp",
+        alt: "Insight Capture web application: a box for Lark and Google Drive links, a drop zone for videos and screenshots, and a list of four read insight videos, each with post and screenshot counts, its source, and Results, copy, open, log, and remove buttons, with one item's process log open (employer branding, KOL names, and numbers blurred).",
+        width: 1600,
+        height: 1385,
+        caption: "Adding insights and reading them in turn, with one item's process log open. Employer branding, KOL names, and numbers blurred.",
+      },
+      {
+        src: "/images/insight-capture-results.webp",
+        alt: "Insight Capture results pop-up for a recording with four stories: story tabs, the source screenshot with thumbnails, Copy PM metrics, Copy all numbers, and Download numbers buttons, and tiles for Reach, Impressions, Likes, Comments, Saves, Shares, and additional numbers (KOL content, names, and every value blurred).",
+        width: 1600,
+        height: 805,
+        caption: "Results for a recording with four stories: each number beside the screenshot it came from, ready to copy. KOL content, names, and values blurred.",
+      },
+    ],
+    challenge:
+      "KOL campaign reporting depends on insight screens that creators send as screen recordings and screenshots — Instagram Stories, Reels, and TikTok, in English or Indonesian. Every reach, impression, like, comment, save, and share had to be read off those screens and typed into Lark PM and decks by hand.",
+    solution:
+      "A signed-in internal web app: add Lark or Google Drive links (single files, folders, or Drive searches) or drop and paste files, and each item is read in turn. A Python reader picks stable frames from each recording, runs text recognition, pairs every label with its number, and splits a recording that moves between several stories into one result per post. Results show each number beside the screenshot it came from, ready to copy in a layout that pastes cleanly into Lark PM, docs, and slides.",
+    capabilities: [
+      {
+        title: "Recordings & screenshots to numbers",
+        detail:
+          "Frame selection, OpenCV and RapidOCR text recognition, and label–number pairing in English and Indonesian; no AI service or API key involved.",
+      },
+      {
+        title: "Lark & Google Drive sources",
+        detail:
+          "File, folder, and Drive search links, plus drag, drop, and paste; Lark files open with each person's own access, and Drive through a dedicated script.",
+      },
+      {
+        title: "Checkable, copy-ready results",
+        detail:
+          "The six Lark PM metrics first, every other number on demand, low-confidence flags, a per-item process log, and Excel/CSV and proof-screenshot downloads.",
+      },
+      {
+        title: "Saved lists, team sign-in & hardening",
+        detail:
+          "Lists, numbers, and screenshots saved privately per account for 30 days, with a nightly clean-up; Lark sign-in shared with the Unified Scraper and Yellow Cart Preview, and encrypted, server-only Lark tokens.",
+      },
+    ],
+    impact: [
+      {
+        text: "Replaces reading insight screens and retyping each metric with a paste-ready copy, with every number traceable to the screenshot it came from.",
+      },
+    ],
+    contribution:
+      "Designed and built the whole tool independently: the frame-selection and text-recognition reader, the number parsing for English and Indonesian screens, the Lark and Google Drive integrations, the results and copy formats, and the sign-in, storage, and clean-up.",
+    tech: ["Python", "OpenCV", "RapidOCR", "JavaScript", "Vercel Functions", "Supabase", "Google Apps Script", "Lark sign-in"],
+    repositoryNote: "Internal company application. The repository is private — source code, credentials, and client data are not published.",
   },
   {
     slug: "course-recommender",
